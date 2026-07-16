@@ -492,15 +492,16 @@
 /* ===== MIX OPTIMIZER ===== */
 .mx-app{background:transparent;color:var(--porcelain);padding:clamp(10px,2vw,26px) 0 clamp(70px,8vw,110px);position:relative}
 .mx-app .wrap{max-width:min(1460px,100%)}
-.mx-grid{display:grid;grid-template-columns:370px 1fr;gap:22px;align-items:start;position:relative}
+.mx-grid{display:grid;grid-template-columns:370px 1fr;gap:22px;row-gap:14px;align-items:start;position:relative;grid-template-areas:"hin hout" "rail dash"}
+.mx-colhead.ch-in{grid-area:hin}
+.mx-colhead.ch-out{grid-area:hout}
 .mx-panel{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:clamp(18px,2.2vw,26px)}
-.mx-rail{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(56,214,190,.35) transparent}
+.mx-rail{grid-area:rail;display:flex;flex-direction:column;gap:18px;max-height:calc(100vh - 150px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(56,214,190,.35) transparent;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 26px,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 26px,#000 calc(100% - 22px),transparent 100%)}
 .mx-rail::-webkit-scrollbar{width:8px}
 .mx-rail::-webkit-scrollbar-track{background:transparent}
 .mx-rail::-webkit-scrollbar-thumb{background:rgba(56,214,190,.25);border-radius:100px}
 .mx-rail::-webkit-scrollbar-thumb:hover{background:rgba(56,214,190,.45)}
-.mx-colhead{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:#328371;font-weight:600;user-select:none;
-  position:sticky;top:0;z-index:6;padding:10px 0;background:var(--ink)}
+.mx-colhead{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:#328371;font-weight:600;user-select:none}
 .mx-colhead::before{content:"";width:26px;height:1px;background:rgba(56,214,190,.45)}
 .mx-colhead::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(56,214,190,.35),rgba(56,214,190,0))}
 .mx-sechead{display:flex;align-items:center;gap:12px;margin-top:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(237,239,236,.55);user-select:none}
@@ -508,7 +509,7 @@
 .mx-sechead::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.08)}
 .mx-dash>.mx-sechead:first-of-type{margin-top:0}
 .mx-rail .mx-panel{background:rgba(9,30,28,.72);border-color:rgba(56,214,190,.14)}
-.mx-dash{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(56,214,190,.35) transparent}
+.mx-dash{grid-area:dash;display:flex;flex-direction:column;gap:18px;max-height:calc(100vh - 150px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(56,214,190,.35) transparent;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 26px,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 26px,#000 calc(100% - 22px),transparent 100%)}
 .mx-dash::-webkit-scrollbar{width:8px}
 .mx-dash::-webkit-scrollbar-track{background:transparent}
 .mx-dash::-webkit-scrollbar-thumb{background:rgba(56,214,190,.25);border-radius:100px}
@@ -606,7 +607,7 @@
 .mx-confirm.attn{animation:mxPulse 1.6s infinite}
 @keyframes mxPulse{0%,100%{box-shadow:0 0 0 0 rgba(56,214,190,.45)}50%{box-shadow:0 0 0 10px rgba(56,214,190,0)}}
 .mx-dirty{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#E0B15C;text-align:center;min-height:1em;margin-top:-6px}
-@media(max-width:1080px){.mx-grid{grid-template-columns:1fr}.mx-rail,.mx-dash{position:static;max-height:none;overflow:visible;padding-right:0}.mx-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1080px){.mx-grid{grid-template-columns:1fr;grid-template-areas:"hin" "rail" "hout" "dash"}.mx-rail,.mx-dash{max-height:none;overflow:visible;padding-right:0;-webkit-mask-image:none;mask-image:none}.mx-cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.mx-report{grid-template-columns:1fr}.mx-subhead{gap:14px}.mx-objwrap{margin-left:0}.mx-tr{grid-template-columns:1fr;gap:8px}.mx-tr .val{text-align:left}}
 </style>
 </head>
@@ -622,10 +623,11 @@
   <section class="mx-app">
     <div class="wrap">
       <div class="mx-grid">
+        <div class="mx-colhead ch-in reveal"><span>Inputs</span></div>
+        <div class="mx-colhead ch-out reveal"><span>Results</span></div>
 
         <!-- ============ INPUT RAIL ============ -->
         <aside class="mx-rail reveal">
-          <div class="mx-colhead"><span>Inputs</span></div>
           <div class="mx-panel">
             <div class="mx-phead">
               <span class="mx-step">01</span><h3>Your current mix</h3>
@@ -731,7 +733,6 @@
 
         <!-- ============ DASHBOARD ============ -->
         <div class="mx-dash">
-          <div class="mx-colhead reveal"><span>Results</span></div>
           <div class="mx-sechead reveal"><b>01</b><span>Substitution control</span></div>
           <div class="mx-panel reveal">
             <div class="mx-subhead">
