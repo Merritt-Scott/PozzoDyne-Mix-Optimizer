@@ -499,7 +499,8 @@
 .mx-rail::-webkit-scrollbar-track{background:transparent}
 .mx-rail::-webkit-scrollbar-thumb{background:rgba(56,214,190,.25);border-radius:100px}
 .mx-rail::-webkit-scrollbar-thumb:hover{background:rgba(56,214,190,.45)}
-.mx-colhead{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:#328371;font-weight:600;user-select:none}
+.mx-colhead{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:#328371;font-weight:600;user-select:none;
+  position:sticky;top:0;z-index:6;padding:10px 0;background:linear-gradient(180deg,rgba(11,35,33,.96) 70%,rgba(11,35,33,0));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .mx-colhead::before{content:"";width:26px;height:1px;background:rgba(56,214,190,.45)}
 .mx-colhead::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(56,214,190,.35),rgba(56,214,190,0))}
 .mx-sechead{display:flex;align-items:center;gap:12px;margin-top:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(237,239,236,.55);user-select:none}
