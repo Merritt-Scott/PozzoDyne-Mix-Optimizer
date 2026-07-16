@@ -494,7 +494,11 @@
 .mx-app .wrap{max-width:min(1460px,100%)}
 .mx-grid{display:grid;grid-template-columns:370px 1fr;gap:22px;align-items:start;position:relative}
 .mx-panel{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:16px;padding:clamp(18px,2.2vw,26px)}
-.mx-rail{display:flex;flex-direction:column;gap:18px;position:sticky;top:92px}
+.mx-rail{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(56,214,190,.35) transparent}
+.mx-rail::-webkit-scrollbar{width:8px}
+.mx-rail::-webkit-scrollbar-track{background:transparent}
+.mx-rail::-webkit-scrollbar-thumb{background:rgba(56,214,190,.25);border-radius:100px}
+.mx-rail::-webkit-scrollbar-thumb:hover{background:rgba(56,214,190,.45)}
 .mx-colhead{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:#328371;font-weight:600;user-select:none}
 .mx-colhead::before{content:"";width:26px;height:1px;background:rgba(56,214,190,.45)}
 .mx-colhead::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(56,214,190,.35),rgba(56,214,190,0))}
@@ -597,7 +601,7 @@
 .mx-confirm.attn{animation:mxPulse 1.6s infinite}
 @keyframes mxPulse{0%,100%{box-shadow:0 0 0 0 rgba(56,214,190,.45)}50%{box-shadow:0 0 0 10px rgba(56,214,190,0)}}
 .mx-dirty{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#E0B15C;text-align:center;min-height:1em;margin-top:-6px}
-@media(max-width:1080px){.mx-grid{grid-template-columns:1fr}.mx-rail{position:static}.mx-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1080px){.mx-grid{grid-template-columns:1fr}.mx-rail{position:static;max-height:none;overflow:visible;padding-right:0}.mx-cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.mx-report{grid-template-columns:1fr}.mx-subhead{gap:14px}.mx-objwrap{margin-left:0}.mx-tr{grid-template-columns:1fr;gap:8px}.mx-tr .val{text-align:left}}
 </style>
 </head>
